@@ -1,7 +1,7 @@
 {
   "name": "casino-gorgees",
   "productName": "Le Tripot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Casino de soirée où les gorgées remplacent l'argent. Aucun argent réel.",
   "main": "electron/main.cjs",
   "author": "Le Tripot",
@@ -42,15 +42,41 @@
   "build": {
     "appId": "fr.tripot.casino",
     "productName": "Le Tripot",
-    "directories": { "output": "release" },
-    "files": ["dist/**", "electron/**", "package.json"],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json"
+    ],
     "mac": {
-      "target": [{ "target": "dmg", "arch": ["arm64", "x64"] }],
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64",
+            "x64"
+          ]
+        }
+      ],
       "category": "public.app-category.games",
       "identity": null
     },
-    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
-    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
     "artifactName": "Le-Tripot-${version}-${os}-${arch}.${ext}"
   }
 }
