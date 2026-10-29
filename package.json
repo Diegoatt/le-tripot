@@ -1,0 +1,56 @@
+{
+  "name": "casino-gorgees",
+  "productName": "Le Tripot",
+  "version": "1.0.0",
+  "description": "Casino de soirée où les gorgées remplacent l'argent. Aucun argent réel.",
+  "main": "electron/main.cjs",
+  "author": "Le Tripot",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "web": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "dist": "npm run build && electron-builder --publish never",
+    "dist:win": "npm run build && electron-builder --win --publish never",
+    "dist:mac": "npm run build && electron-builder --mac --publish never"
+  },
+  "dependencies": {
+    "@fontsource/bebas-neue": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "gsap": "^3.15.0",
+    "pixi.js": "^8.22.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "electron": "^45.1.0",
+    "electron-builder": "^26.18.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  },
+  "allowScripts": {
+    "electron-winstaller@5.4.0": true
+  },
+  "build": {
+    "appId": "fr.tripot.casino",
+    "productName": "Le Tripot",
+    "directories": { "output": "release" },
+    "files": ["dist/**", "electron/**", "package.json"],
+    "mac": {
+      "target": [{ "target": "dmg", "arch": ["arm64", "x64"] }],
+      "category": "public.app-category.games",
+      "identity": null
+    },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }] },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true },
+    "artifactName": "Le-Tripot-${version}-${os}-${arch}.${ext}"
+  }
+}

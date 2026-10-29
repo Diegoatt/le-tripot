@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e3213f"/>
+      <stop offset="1" stop-color="#8e0c24"/>
+    </linearGradient>
+    <linearGradient id="beer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd35c"/>
+      <stop offset="1" stop-color="#e09a1c"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e9e2d6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.35" r="0.6">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base tile (macOS-style rounded square with margin) -->
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="url(#bg)"/>
+  <rect x="64" y="64" width="896" height="896" rx="200" fill="url(#glow)"/>
+  <rect x="80" y="80" width="864" height="864" rx="186" fill="none" stroke="#f4c14b" stroke-width="10" stroke-opacity="0.55"/>
+
+  <!-- Handle -->
+  <path d="M676 400 h52 a86 86 0 0 1 86 86 v110 a86 86 0 0 1 -86 86 h-52 v-70 h52 a16 16 0 0 0 16 -16 v-110 a16 16 0 0 0 -16 -16 h-52 z" fill="url(#glass)"/>
+
+  <!-- Glass body -->
+  <path d="M232 320 h444 v444 a96 96 0 0 1 -96 96 h-252 a96 96 0 0 1 -96 -96 z" fill="url(#glass)"/>
+  <!-- Beer -->
+  <path d="M280 360 h348 v396 a60 60 0 0 1 -60 60 h-228 a60 60 0 0 1 -60 -60 z" fill="url(#beer)"/>
+  <!-- Glass highlight -->
+  <rect x="300" y="380" width="26" height="410" rx="13" fill="#ffffff" opacity="0.35"/>
+  <!-- Bubbles -->
+  <g fill="#fff4cf" opacity="0.9">
+    <circle cx="360" cy="420" r="10"/><circle cx="560" cy="440" r="8"/><circle cx="590" cy="760" r="12"/><circle cx="350" cy="770" r="9"/>
+  </g>
+
+  <!-- Foam -->
+  <path d="M220 300 q50 -80 120 -34 q56 -74 120 -6 q58 -70 120 0 q70 -52 116 40 v80 h-476 z" fill="#ffffff"/>
+  <g fill="#ffffff">
+    <circle cx="300" cy="372" r="34"/><circle cx="610" cy="376" r="30"/>
+  </g>
+
+  <!-- Chip medallion -->
+  <circle cx="454" cy="598" r="168" fill="#ffffff"/>
+  <circle cx="454" cy="598" r="150" fill="#14101a"/>
+  <circle cx="454" cy="598" r="150" fill="none" stroke="#ffffff" stroke-width="40" stroke-dasharray="44.2 44.2"/>
+  <circle cx="454" cy="598" r="104" fill="none" stroke="#f4c14b" stroke-width="6"/>
+  <circle cx="454" cy="598" r="92" fill="#c8102e"/>
+  <circle cx="454" cy="598" r="80" fill="none" stroke="#ffffff" stroke-width="3" stroke-dasharray="10 8" opacity="0.7"/>
+  <!-- T monogram -->
+  <path d="M400 548 h108 v28 h-38 v92 h-32 v-92 h-38 z" fill="#ffe7a3"/>
+</svg>
