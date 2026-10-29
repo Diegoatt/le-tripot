@@ -1,7 +1,7 @@
 {
   "name": "casino-gorgees",
   "productName": "Le Tripot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Casino de soirée où les gorgées remplacent l'argent. Aucun argent réel.",
   "main": "electron/main.cjs",
   "author": "Le Tripot",
