@@ -67,7 +67,7 @@ export class HorsesScene {
     this.world.addChild(new Graphics().rect(-W, 430, L + W * 4, 440).fill(new FillGradient({ type: 'linear', start: { x: 0, y: 0 }, end: { x: 0, y: 1 }, colorStops: [{ offset: 0, color: 0x6b4226 }, { offset: 1, color: 0x3d2414 }] })));
     const lanes = new Graphics();
     for (let i = 0; i <= 5; i++) lanes.moveTo(-W, 428 + i * 84).lineTo(L + W * 3, 428 + i * 84).stroke({ width: 2, color: 0xffffff, alpha: 0.12 });
-    this.world.addChild(lanes);
+    this.world.addChild(lanes, this.finishLine); // re-added so the checkered line sits above the dirt
     this.world.addChild(this.particles.layer);
 
     HORSES.forEach((h, i) => {
@@ -217,13 +217,22 @@ export class HorsesScene {
       this.world.filters = [this.sepia];
       this.banner.text = 'PHOTO';
       this.banner.style.fill = 0xffffff;
-      gsap.fromTo(this.world.scale, { x: 1, y: 1 }, { x: 1.35, y: 1.35, duration: 1.4, ease: 'power2.out' });
-      gsap.to(this.world, { y: -230, duration: 1.4, ease: 'power2.out' });
+      // Zoom around the finish line (not the world origin) and bring it to the centre of the screen.
+      const lineX = START_X + L;
+      const lineY = 645; // middle of the track (430..860)
+      const from = { x: lineX - this.cam, y: lineY, s: 1 };
+      const zoom = { ...from };
+      const apply = () => {
+        this.world.scale.set(zoom.s);
+        this.world.position.set(zoom.x - zoom.s * lineX, zoom.y - zoom.s * lineY);
+      };
+      // 1.4x keeps all five lanes above the commentary bar.
+      await gsap.to(zoom, { x: W / 2 + 120, y: 420, s: 1.4, duration: 1.2, ease: 'power2.out', onUpdate: apply });
       sfx.drum(1.6);
-      await wait(2);
+      await wait(1.2);
       this.world.filters = [];
-      gsap.to(this.world.scale, { x: 1, y: 1, duration: 0.5 });
-      gsap.to(this.world, { y: 0, duration: 0.5 });
+      await gsap.to(zoom, { ...from, duration: 0.5, ease: 'power2.inOut', onUpdate: apply });
+      this.world.position.set(-this.cam, 0);
       this.running = true;
     }
     this.say('win', `${name} l’emporte !`);
