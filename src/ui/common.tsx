@@ -149,7 +149,9 @@ export function usePlayerKeys(handler: (index: number) => void, active = true) {
     if (!active) return;
     const on = (e: KeyboardEvent) => {
       if (e.repeat || (e.target as HTMLElement)?.tagName === 'INPUT' || getState().paused) return;
-      const n = parseInt(e.key, 10);
+      // Physical key, not the character: on AZERTY the top row types & é " ' without Shift.
+      const m = /^(?:Digit|Numpad)([1-8])$/.exec(e.code);
+      const n = m ? Number(m[1]) : NaN;
       if (n >= 1 && n <= getState().players.length) ref.current(n - 1);
     };
     window.addEventListener('keydown', on);
